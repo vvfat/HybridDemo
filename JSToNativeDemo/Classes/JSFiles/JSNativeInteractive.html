@@ -1,0 +1,191 @@
+<html>
+    <head lang="en">
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <meta name="misapplication-tap-highlight" content="no"/>
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="MobileOptimized" content="320"/>
+       <!-- <link href="style.css" rel="stylesheet" type="text/css" media="all" /> -->
+        <meta name="keywords" content="">
+            <meta name="description" content="">
+                <title>这是JS测试文档</title>
+                <script type="text/javascript" src="JSToNativeInteractive.js"></script>
+                </head>
+    
+    <body onload="setLeftBackItem()">
+        <br>
+        <br>
+        
+        <p>
+        onclick="openPage('JSToNativeInteractive.html',{'pKey':'pValue'},'新页面','2',true)";
+        <br>
+
+        <input id="login" type="button" value="打开H5页面" onclick="openPage('JSToNativeInteractive.html',{'pKey':'pValue'},'新页面','2',true)"/>
+          </p>
+        <br>
+        <p>
+        onclick="openNativePage('MasterViewController',{'pKey':'pValue'},'添加商品')";
+        <br>
+        
+        <input id="login" type="button" value="打开原生页面" onclick="openNativePage('MasterViewController',{'pKey':'pValue'},'添加商品')"/>
+        </p>
+        <br>
+         <p>
+         onclick="postRequestFromJS('ProductsServlet',{'action':'productlist'},false,true,function(response){})"
+         <br>
+
+    <input id="token" type="button" value="商品列表(有缓存)"  onclick="postRequestFromJS('ProductsServlet',{'action':'productlist'},false,true,function(response){
+                var result = JSON.stringify(response);
+                alert(result);
+        })"/>
+        </p>
+
+        <br>
+        <p>
+        onclick="postRequestFromJS('ProductsServlet',{'action':'productlist'},false,false,function(response){})"
+        <br>
+
+        <input type="button" value="商品列表(无缓存)" onclick="postRequestFromJS('ProductsServlet',{'action':'productlist'},false,false,function(response){
+        var result = JSON.stringify(response);
+        alert(result);
+        })"/>
+        </p>
+
+        <br>
+        <p>
+        onclick="postRequestFromJS('ProductsServlet',{'action':'productinfo','param':'6723'},false,false,function(response){})"
+        <br>
+
+        <input type="button" value="商品详情(无加密)" onclick="postRequestFromJS('ProductsServlet',{'action':'productinfo','param':'6723'},false,false,function(response){
+        var result = JSON.stringify(response);
+        alert(result);
+        })"/>
+        </p>
+
+        <br>
+        <p>
+        onclick="postRequestFromJS('ProductsServlet',{'action':'productinfo','param':'6723'},true,false,function(response){})"
+        <br>
+
+        <input type="button" value="商品详情(有加密)" onclick="postRequestFromJS('ProductsServlet',{'action':'productinfo','param':'6723'},true,false,function(response){
+        var result = JSON.stringify(response);
+        alert(result);
+        })"/>
+        </p>
+
+        <br>
+        <p>
+        onclick="setPageTitle('我是新标题')"
+        <br>
+
+        <input id="setPageTitle" type="button" value="设置标题" onclick="setPageTitle('我是新标题')"/>
+        </p>
+
+        <br>
+        <p>
+        onclick="setRightBackItem('完成')"
+        <br>
+
+        <input id="setPageTitle" type="button" value="设置右侧按钮" onclick="setRightBarItem('完成')"/>
+        <br>
+        </p>
+
+        <p>
+        onclick="showHUD()"
+        <br>
+
+        <input id="showHUD" type="button" value="显示加载框" onclick="showHUD()"/>
+        </p>
+
+        <br>
+        <br>
+        <input id="hideHUD" type="button" value="隐藏加载框"    onclick="hideHUD()"/>
+        <br>
+        <br>
+        <p>
+        onclick="backButtonAction()"
+        <br>
+
+        <input id="backButtonAction" type="button" value="返回按钮"  onclick="backButtonAction()"/>
+        </p>
+        <br>
+        <p>
+        
+        onclick="sendMessage('testClassMethod')"
+        <br>
+
+        <input id="testClassMethod" type="button" value="测试新增类接口"  onclick="sendMessage('testClassMethod')"/>
+        </p>
+
+        <br>
+        <p>
+        onclick="sendMessage('testMethod')"
+        <br>
+
+        <input id="testMethod" type="button" value="测试新增实例接口" style="height=200px;width=200px;"  onclick="sendMessage('testMethod')"/>
+        </p>
+
+        <br>
+        <p>
+
+        onclick="sendMessage('testMethod222')"
+        <br>
+
+        <input id="testMethod222" type="button" value="测试未新增接口" style="height=200px;width=200px;"  onclick="sendMessage('testMethod222')"/>
+        </p>
+
+        <br>
+        <p>
+        onclick="popByCount(2,true)"
+        <br>
+
+        <input id="testMethod222" type="button" value="退回2个"   onclick="popByCount(2,true)"/>
+        </p>
+        <br>
+
+        <p>
+        onclick="getValueFromJSParam('pKey',function(response){});"
+        <br>
+
+        <input id="testMethod222" type="button" value="获取当前VC参数"  onclick="getValueFromJSParam('pKey',function(response){
+            alert(response);
+        })"/>
+        </p>
+
+        <br>
+        <p>
+        onclick="clickObj.leftButtonClick();"
+        <br>
+      
+        <input id="testMethod222" type="button" value="点击左按钮" style="height=200px;width=200px;"  onclick="clickObj.leftButtonClick();"/>
+        </p>
+
+        <br>
+        <br>
+        //刷新当前页面
+        onclick="refresh();"
+        <br>
+        <input id="refresh" type="button" value="刷新当前页面"  onclick="refresh()"/>
+        </p>
+        
+    </body>
+    
+    <script>
+        
+        
+        var clickObj =new function(){
+            this.leftButtonClick = function(){
+              //  alert('我点击了左侧原生按钮！');
+                backButtonAction();
+            };
+            
+            this.rightButtonClick = function(){
+                alert('我点击了右侧原生按钮！');
+                
+            };
+        };
+  
+    
+    </script>
+    
+</html>
